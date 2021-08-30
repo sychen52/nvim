@@ -1,20 +1,18 @@
-local fn = vim.fn
+local install_path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
 
-local install_path = fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
-
-if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({'git', 'clone', '--depth=1', 'https://github.com/savq/paq-nvim.git', install_path})
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  vim.fn.system({'git', 'clone', '--depth=1', 'https://github.com/savq/paq-nvim.git', install_path})
 end
 
 require "paq" {
     "savq/paq-nvim";                  -- Let Paq manage itself
     "neovim/nvim-lspconfig";          -- Mind the semi-colons
-    'nvim-lua/completion-nvim';
+    "nvim-lua/completion-nvim";
     "vim-airline/vim-airline";
     "vim-airline/vim-airline-themes"
 }
 
--- vim-airline
+--[[vim-airline]]
 vim.g["airline#extensions#syntastic#enabled"] = 1
 vim.g["airline#extensions#branch#enabled"] = 1
 vim.g["airline#extensions#tabline#enabled"] = 1
@@ -23,7 +21,7 @@ vim.g["airline_skip_empty_sections"] = 1
 vim.g["airline#extensions#tabline#ignore_bufadd_pat"] = '!|defx|gundo|nerd_tree|startify|tagbar|undotree|vimfiler'
 
 
--- netrw
+--[[netrw]]
 vim.g["netrw_liststyle"] = 3
 vim.g["netrw_browse_split"] = 4
 vim.g["netrw_altv"] = 1
@@ -56,18 +54,11 @@ vim.opt.hidden = true                   -- Enable background buffers
 --vim.opt.wrap = false                    -- Disable line wrap
 
 
-local function map(mode, lhs, rhs, opts)
-  local options = {noremap = true}
-  if opts then options = vim.tbl_extend('force', options, opts) end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
 vim.api.nvim_set_keymap('t', '<Esc><Esc>', '<C-\\><C-n>', {noremap=true})   --escape terminal
 vim.api.nvim_set_keymap('n', '<Tab>',  ':bn<CR>', {noremap=true})         --Buffer nav
 vim.api.nvim_set_keymap('n', '<S-Tab>', ':bp<CR>', {noremap=true})        --Buffer nav
 
-
---lsp-config
+--[[lspconfig]]
 local nvim_lsp = require('lspconfig')
 local completion_callback = require('completion').on_attach
 -- Use an on_attach function to only map the following keys
@@ -116,7 +107,7 @@ for _, lsp in ipairs(servers) do
   }
 end
 
--- completion-nvim
+--[[completion-nvim]]
 -- Use <Tab> and <S-Tab> to navigate through popup menu
 vim.api.nvim_set_keymap('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {noremap=true, expr=true})
 vim.api.nvim_set_keymap('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {noremap=true, expr=true})
