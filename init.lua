@@ -54,7 +54,7 @@ vim.opt.hidden = true                   -- Enable background buffers
 --vim.opt.wrap = false                    -- Disable line wrap
 
 
-vim.api.nvim_set_keymap('t', '<Esc><Esc>', '<C-\\><C-n>', {noremap=true})   --escape terminal
+vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', {noremap=true})      --escape terminal
 vim.api.nvim_set_keymap('n', '<Tab>',  ':bn<CR>', {noremap=true})         --Buffer nav
 vim.api.nvim_set_keymap('n', '<S-Tab>', ':bp<CR>', {noremap=true})        --Buffer nav
 
