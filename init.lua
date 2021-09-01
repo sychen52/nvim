@@ -9,9 +9,13 @@ require "paq" {
     --{"nvim-treesitter/nvim-treesitter", run=":TSUpdate"};
     "neovim/nvim-lspconfig";          -- Mind the semi-colons
     "nvim-lua/completion-nvim";
+    "nvim-lua/plenary.nvim";
+    "nvim-telescope/telescope.nvim";
     "vim-airline/vim-airline";
-    "vim-airline/vim-airline-themes"
 }
+--require "treesitter"
+require("lsp")
+require("telescope")
 
 --[[vim-airline]]
 vim.g["airline#extensions#syntastic#enabled"] = 1
@@ -59,5 +63,3 @@ vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', {noremap=true})      --esca
 vim.api.nvim_set_keymap('n', '<Tab>',  ':bn<CR>', {noremap=true})         --Buffer nav
 vim.api.nvim_set_keymap('n', '<S-Tab>', ':bp<CR>', {noremap=true})        --Buffer nav
 
---require "treesitter"
-require "lsp"
