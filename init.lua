@@ -8,6 +8,7 @@ require "paq" {
     "savq/paq-nvim";                  -- Let Paq manage itself
     "neovim/nvim-lspconfig";          -- Mind the semi-colons
     "nvim-lua/completion-nvim";
+    {"nvim-treesitter/nvim-treesitter", run=":TSUpdate"};
     "vim-airline/vim-airline";
     "vim-airline/vim-airline-themes"
 }
@@ -54,9 +55,24 @@ vim.opt.hidden = true                   -- Enable background buffers
 --vim.opt.wrap = false                    -- Disable line wrap
 
 
-vim.api.nvim_set_keymap('t', '<Esc><Esc>', '<C-\\><C-n>', {noremap=true})   --escape terminal
+vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', {noremap=true})   --escape terminal
 vim.api.nvim_set_keymap('n', '<Tab>',  ':bn<CR>', {noremap=true})         --Buffer nav
 vim.api.nvim_set_keymap('n', '<S-Tab>', ':bp<CR>', {noremap=true})        --Buffer nav
+
+--[[nvim-treesitter]]
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ignore_install = {}, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = {},  -- list of language that will be disabled
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
 
 --[[lspconfig]]
 local nvim_lsp = require('lspconfig')
