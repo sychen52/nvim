@@ -11,11 +11,13 @@ require "paq" {
     "nvim-lua/completion-nvim";
     "nvim-lua/plenary.nvim";
     "nvim-telescope/telescope.nvim";
+    "sindrets/diffview.nvim";
     "vim-airline/vim-airline";
 }
 require("treesitter")
 require("lsp")
 require("telescope")
+require("diffview").setup{ use_icons = false }
 
 --[[vim-airline]]
 vim.g["airline#extensions#syntastic#enabled"] = 1
