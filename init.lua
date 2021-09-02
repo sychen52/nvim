@@ -13,6 +13,7 @@ require "paq" {
     "nvim-telescope/telescope.nvim";
     "sindrets/diffview.nvim";
     "vim-airline/vim-airline";
+    "rlue/vim-barbaric";
 }
 require("treesitter")
 require("lsp")
