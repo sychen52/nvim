@@ -6,14 +6,14 @@ end
 
 require "paq" {
     "savq/paq-nvim";                  -- Let Paq manage itself
-    --{"nvim-treesitter/nvim-treesitter", run=":TSUpdate"};
+    {"nvim-treesitter/nvim-treesitter", run=":TSUpdate"};
     "neovim/nvim-lspconfig";          -- Mind the semi-colons
     "nvim-lua/completion-nvim";
     "nvim-lua/plenary.nvim";
     "nvim-telescope/telescope.nvim";
     "vim-airline/vim-airline";
 }
---require "treesitter"
+require("treesitter")
 require("lsp")
 require("telescope")
 
