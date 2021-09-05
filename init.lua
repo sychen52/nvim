@@ -1,3 +1,4 @@
+vim.g["mapleader"] = " "
 local install_path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -5,19 +6,21 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 require "paq" {
-    "savq/paq-nvim";                  -- Let Paq manage itself
-    {"nvim-treesitter/nvim-treesitter", run=":TSUpdate"};
-    "neovim/nvim-lspconfig";          -- Mind the semi-colons
-    "nvim-lua/completion-nvim";
+    "savq/paq-nvim";                                      -- Let Paq manage itself
+    "neovim/nvim-lspconfig";                              -- Mind the semi-colons
+    {"nvim-treesitter/nvim-treesitter", run=":TSUpdate"}; -- better syntax highlighting
+    "nvim-lua/completion-nvim";                           -- Auto completion for lsp
     "nvim-lua/plenary.nvim";
-    "nvim-telescope/telescope.nvim";
-    "tpope/vim-fugitive";
-    "vim-airline/vim-airline";
-    "rlue/vim-barbaric";
+    "nvim-telescope/telescope.nvim";                      -- fuzzy file finder, and grep: Manual install rpigrep
+    "tpope/vim-fugitive";                                 -- Git
+    "vim-airline/vim-airline";                            -- buffer line and status line
+    "rlue/vim-barbaric";                                  -- Auto switch input method
+    "folke/which-key.nvim";                               -- suggest key binding
 }
 require("treesitter")
 require("lsp")
 require("telescope")
+require("which-key").setup{}
 
 --[[vim-airline]]
 vim.g["airline#extensions#syntastic#enabled"] = 1
