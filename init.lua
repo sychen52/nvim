@@ -37,7 +37,7 @@ vim.g["netrw_list_hide"] = '.*.swp$,.*.pyc'
 
 vim.opt.background = "dark"
 vim.opt.mouse = "nv"
-vim.opt.path = vim.opt.path + "**"
+vim.opt.path:append("**")
 vim.opt.clipboard = "unnamed"           -- System clipboard to "+
 
 vim.opt.expandtab = true                -- Use spaces instead of tabs

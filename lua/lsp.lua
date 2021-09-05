@@ -54,5 +54,5 @@ vim.api.nvim_set_keymap('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {n
 -- Set completeopt to have a better completion experience
 vim.opt.completeopt = {'menuone', 'noinsert', 'noselect'}
 -- Avoid showing message extra message when using completion
-vim.opt.shortmess = vim.opt.shortmess + 'c'
+vim.opt.shortmess:append('c')
 
