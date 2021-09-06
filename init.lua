@@ -16,11 +16,16 @@ require "paq" {
     "vim-airline/vim-airline";                            -- buffer line and status line
     "rlue/vim-barbaric";                                  -- Auto switch input method
     "folke/which-key.nvim";                               -- suggest key binding
+    "folke/tokyonight.nvim";                              -- A color scheme support treesitter
 }
 require("treesitter")
 require("lsp")
 require("telescope")
 require("which-key").setup{}
+
+--[[tokyonight]]
+vim.cmd[[colorscheme tokyonight]]
+vim.g["tokyonight_style"] = "night"
 
 --[[vim-airline]]
 vim.g["airline#extensions#syntastic#enabled"] = 1
