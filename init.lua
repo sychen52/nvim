@@ -8,24 +8,21 @@ end
 require "paq" {
     "savq/paq-nvim";                                      -- Let Paq manage itself
     "neovim/nvim-lspconfig";                              -- Mind the semi-colons
-    {"nvim-treesitter/nvim-treesitter", run=":TSUpdate"}; -- better syntax highlighting
+    {"nvim-treesitter/nvim-treesitter", run=":TSUpdate"}; -- Better syntax highlighting
     "nvim-lua/completion-nvim";                           -- Auto completion for lsp
     "nvim-lua/plenary.nvim";
-    "nvim-telescope/telescope.nvim";                      -- fuzzy file finder, and grep: Manual install rpigrep
+    "nvim-telescope/telescope.nvim";                      -- Fuzzy file finder, and grep: Manual install rpigrep
     "tpope/vim-fugitive";                                 -- Git
-    "vim-airline/vim-airline";                            -- buffer line and status line
+    "vim-airline/vim-airline";                            -- Buffer line and status line
     "rlue/vim-barbaric";                                  -- Auto switch input method
-    "folke/which-key.nvim";                               -- suggest key binding
-    "folke/tokyonight.nvim";                              -- A color scheme support treesitter
+    "folke/which-key.nvim";                               -- Suggest key binding
+    "bluz71/vim-moonfly-colors";                          -- A color scheme support treesitter
 }
 require("treesitter")
 require("lsp")
 require("telescope")
 require("which-key").setup{}
-
---[[tokyonight]]
-vim.cmd[[colorscheme tokyonight]]
-vim.g["tokyonight_style"] = "night"
+vim.cmd [[colorscheme moonfly]]
 
 --[[vim-airline]]
 vim.g["airline#extensions#syntastic#enabled"] = 1
