@@ -43,6 +43,8 @@ vim.g["netrw_list_hide"] = '.*.swp$,.*.pyc'
 vim.opt.background = "dark"
 vim.opt.mouse = "nv"
 vim.opt.path:append("**")
+vim.opt.foldmethod = "indent"
+vim.opt.foldnestmax = 2
 vim.opt.clipboard = "unnamed"           -- System clipboard to "+
 
 vim.opt.expandtab = true                -- Use spaces instead of tabs
@@ -69,4 +71,8 @@ vim.opt.hidden = true                   -- Enable background buffers
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', {noremap=true})      --escape terminal
 vim.api.nvim_set_keymap('n', '<Tab>',  ':bn<CR>', {noremap=true})         --Buffer nav
 vim.api.nvim_set_keymap('n', '<S-Tab>', ':bp<CR>', {noremap=true})        --Buffer nav
+vim.api.nvim_set_keymap('n', '<C-j>',  '<C-w><C-j>', {noremap=true})      --Switch between windows
+vim.api.nvim_set_keymap('n', '<C-k>',  '<C-w><C-k>', {noremap=true})      --Switch between windows
+vim.api.nvim_set_keymap('n', '<C-h>',  '<C-w><C-h>', {noremap=true})      --Switch between windows
+vim.api.nvim_set_keymap('n', '<C-l>',  '<C-w><C-l>', {noremap=true})      --Switch between windows
 
