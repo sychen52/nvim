@@ -41,11 +41,11 @@ vim.g["netrw_winsize"] = 20
 vim.g["netrw_list_hide"] = '.*.swp$,.*.pyc'
 
 vim.opt.background = "dark"
-vim.opt.mouse = "nv"
+vim.opt.mouse = "nv"                    -- Enable mouse in normal and visual mode
 vim.opt.path:append("**")
 vim.opt.foldmethod = "indent"
 vim.opt.foldnestmax = 2
-vim.opt.clipboard = "unnamed"           -- System clipboard to "+
+vim.opt.clipboard = "unnamedplus"       -- Use system clipboard by default
 
 vim.opt.expandtab = true                -- Use spaces instead of tabs
 vim.opt.ignorecase = true               -- Ignore case
