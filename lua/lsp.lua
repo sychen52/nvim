@@ -39,13 +39,20 @@ end
 -- map buffer local keybindings when the language server attaches
 local servers = { 'pyright' }
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
+    nvim_lsp[lsp].setup {
+        on_attach = on_attach,
+        flags = {
+            debounce_text_changes = 150,
+        }
+    }
+end
+nvim_lsp.clangd.setup {
     on_attach = on_attach,
     flags = {
-      debounce_text_changes = 150,
-    }
-  }
-end
+        debounce_text_changes = 150,
+    },
+    filetypes = {"c", "cpp", "tpp", 'cu'}
+}
 
 --[[completion-nvim]]
 -- Use <Tab> and <S-Tab> to navigate through popup menu

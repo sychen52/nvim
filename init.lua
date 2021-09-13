@@ -40,6 +40,7 @@ vim.g["netrw_altv"] = 1
 vim.g["netrw_winsize"] = 20
 vim.g["netrw_list_hide"] = '.*.swp$,.*.pyc'
 
+vim.cmd [[autocmd BufEnter *.tpp :setlocal filetype=cpp]]
 vim.opt.background = "dark"
 vim.opt.mouse = "nv"                    -- Enable mouse in normal and visual mode
 vim.opt.path:append("**")
