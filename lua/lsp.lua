@@ -1,5 +1,6 @@
 --[[lspconfig]]
 local nvim_lsp = require('lspconfig')
+local lsp_install = require('lspinstall')
 local completion_callback = require('completion').on_attach
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -35,24 +36,26 @@ local on_attach = function(client, bufnr)
 
 end
 
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local servers = { 'pyright' }
-for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup {
-        on_attach = on_attach,
-        flags = {
-            debounce_text_changes = 150,
+local function setup_servers()
+    lsp_install.setup()
+    local servers = lsp_install.installed_servers()
+    for _, server in pairs(servers) do
+        nvim_lsp[server].setup {
+            on_attach = on_attach,
+            flags = {
+                debounce_text_changes = 150,
+            }
         }
-    }
+    end
 end
-nvim_lsp.clangd.setup {
-    on_attach = on_attach,
-    flags = {
-        debounce_text_changes = 150,
-    },
-    filetypes = {"c", "cpp", "tpp", 'cu'}
-}
+
+setup_servers()
+
+-- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
+lsp_install.post_install_hook = function ()
+    setup_servers() -- reload installed servers
+    vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
+end
 
 --[[completion-nvim]]
 -- Use <Tab> and <S-Tab> to navigate through popup menu

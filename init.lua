@@ -1,4 +1,6 @@
 vim.g["mapleader"] = " "
+vim.cmd [[autocmd BufEnter *.tpp :setlocal filetype=cpp]]
+
 local install_path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -6,17 +8,18 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 require "paq" {
-    "savq/paq-nvim";                                      -- Let Paq manage itself
-    "neovim/nvim-lspconfig";                              -- Mind the semi-colons
-    {"nvim-treesitter/nvim-treesitter", run=":TSUpdate"}; -- Better syntax highlighting
-    "nvim-lua/completion-nvim";                           -- Auto completion for lsp
+    "savq/paq-nvim";                                        -- Let Paq manage itself
+    {"nvim-treesitter/nvim-treesitter", run=":TSUpdate"};   -- Better syntax highlighting
+    "neovim/nvim-lspconfig";                                -- Mind the semi-colons
+    "kabouzeid/nvim-lspinstall";                            -- Call "LspInstall <language>"
+    "nvim-lua/completion-nvim";                             -- Auto completion for lsp
     "nvim-lua/plenary.nvim";
-    "nvim-telescope/telescope.nvim";                      -- Fuzzy file finder, and grep: Manual install rpigrep
-    "tpope/vim-fugitive";                                 -- Git
-    "vim-airline/vim-airline";                            -- Buffer line and status line
-    "rlue/vim-barbaric";                                  -- Auto switch input method
-    "folke/which-key.nvim";                               -- Suggest key binding
-    "bluz71/vim-moonfly-colors";                          -- A color scheme support treesitter
+    "nvim-telescope/telescope.nvim";                        -- Fuzzy file finder, and grep: Manual install rpigrep
+    "tpope/vim-fugitive";                                   -- Git
+    "vim-airline/vim-airline";                              -- Buffer line and status line
+    "rlue/vim-barbaric";                                    -- Auto switch input method
+    "folke/which-key.nvim";                                 -- Suggest key binding
+    "bluz71/vim-moonfly-colors";                            -- A color scheme support treesitter
 }
 require("treesitter")
 require("lsp")
@@ -40,40 +43,39 @@ vim.g["netrw_altv"] = 1
 vim.g["netrw_winsize"] = 20
 vim.g["netrw_list_hide"] = '.*.swp$,.*.pyc'
 
-vim.cmd [[autocmd BufEnter *.tpp :setlocal filetype=cpp]]
 vim.opt.background = "dark"
-vim.opt.mouse = "nv"                    -- Enable mouse in normal and visual mode
+vim.opt.mouse = "a"                      -- Enable mouse in all mode
 vim.opt.path:append("**")
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevelstart = 10
-vim.opt.clipboard = "unnamedplus"       -- Use system clipboard by default
+vim.opt.clipboard = "unnamedplus"        -- Use system clipboard by default
 
-vim.opt.expandtab = true                -- Use spaces instead of tabs
-vim.opt.ignorecase = true               -- Ignore case
-vim.opt.joinspaces = false              -- No double spaces with join
-vim.opt.list = true                     -- Show some invisible characters
-vim.opt.number = true                   -- Show line numbers
-vim.opt.relativenumber = true           -- Relative line numbers
-vim.opt.scrolloff = 4                   -- Lines of context
-vim.opt.shiftround = true               -- Round indent
-vim.opt.shiftwidth = 4                  -- Size of an indent
-vim.opt.sidescrolloff = 8               -- Columns of context
-vim.opt.smartcase = true                -- Do not ignore case with capitals
-vim.opt.smartindent = true              -- Insert indents automatically
-vim.opt.splitbelow = true               -- Put new windows below current
-vim.opt.splitright = true               -- Put new windows right of current
-vim.opt.tabstop = 4                     -- Number of spaces tabs count for
-vim.opt.termguicolors = true            -- True color support
-vim.opt.hidden = true                   -- Enable background buffers
---vim.opt.wildmode = {'list', 'longest'}  -- Command-line completion mode
---vim.opt.wrap = false                    -- Disable line wrap
+vim.opt.expandtab = true                 -- Use spaces instead of tabs
+vim.opt.ignorecase = true                -- Ignore case
+vim.opt.joinspaces = false               -- No double spaces with join
+vim.opt.list = true                      -- Show some invisible characters
+vim.opt.number = true                    -- Show line numbers
+vim.opt.relativenumber = true            -- Relative line numbers
+vim.opt.scrolloff = 4                    -- Lines of context
+vim.opt.shiftround = true                -- Round indent
+vim.opt.shiftwidth = 4                   -- Size of an indent
+vim.opt.sidescrolloff = 8                -- Columns of context
+vim.opt.smartcase = true                 -- Do not ignore case with capitals
+vim.opt.smartindent = true               -- Insert indents automatically
+vim.opt.splitbelow = true                -- Put new windows below current
+vim.opt.splitright = true                -- Put new windows right of current
+vim.opt.tabstop = 4                      -- Number of spaces tabs count for
+vim.opt.termguicolors = true             -- True color support
+vim.opt.hidden = true                    -- Enable background buffers
+--vim.opt.wildmode = {'list', 'longest'}   -- Command-line completion mode
+--vim.opt.wrap = false                     -- Disable line wrap
 
 
-vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', {noremap=true})      --escape terminal
-vim.api.nvim_set_keymap('n', '<Tab>',  ':bn<CR>', {noremap=true})         --Buffer nav
-vim.api.nvim_set_keymap('n', '<S-Tab>', ':bp<CR>', {noremap=true})        --Buffer nav
-vim.api.nvim_set_keymap('n', '<C-j>',  '<C-w><C-j>', {noremap=true})      --Switch between windows
-vim.api.nvim_set_keymap('n', '<C-k>',  '<C-w><C-k>', {noremap=true})      --Switch between windows
-vim.api.nvim_set_keymap('n', '<C-h>',  '<C-w><C-h>', {noremap=true})      --Switch between windows
-vim.api.nvim_set_keymap('n', '<C-l>',  '<C-w><C-l>', {noremap=true})      --Switch between windows
+vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', {noremap=true})        --escape terminal
+vim.api.nvim_set_keymap('n', '<Tab>',  ':bn<CR>', {noremap=true})           --Buffer nav
+vim.api.nvim_set_keymap('n', '<S-Tab>', ':bp<CR>', {noremap=true})          --Buffer nav
+vim.api.nvim_set_keymap('n', '<C-j>',  '<C-w><C-j>', {noremap=true})        --Switch between windows
+vim.api.nvim_set_keymap('n', '<C-k>',  '<C-w><C-k>', {noremap=true})        --Switch between windows
+vim.api.nvim_set_keymap('n', '<C-h>',  '<C-w><C-h>', {noremap=true})        --Switch between windows
+vim.api.nvim_set_keymap('n', '<C-l>',  '<C-w><C-l>', {noremap=true})        --Switch between windows
 
