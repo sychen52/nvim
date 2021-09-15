@@ -46,8 +46,6 @@ vim.g["netrw_list_hide"] = '.*.swp$,.*.pyc'
 vim.opt.background = "dark"
 vim.opt.mouse = "a"                      -- Enable mouse in all mode
 vim.opt.path:append("**")
-vim.opt.foldmethod = "indent"
-vim.opt.foldlevelstart = 10
 vim.opt.clipboard = "unnamedplus"        -- Use system clipboard by default
 
 vim.opt.expandtab = true                 -- Use spaces instead of tabs
