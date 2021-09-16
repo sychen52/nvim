@@ -19,15 +19,13 @@ require "paq" {
     "vim-airline/vim-airline";                              -- Buffer line and status line
     "rlue/vim-barbaric";                                    -- Auto switch input method
     "folke/which-key.nvim";                                 -- Suggest key binding
-    --"bluz71/vim-moonfly-colors";                            -- A color scheme support treesitter
-    "projekt0n/github-nvim-theme";                          -- A color scheme support treesitter
+    "bluz71/vim-moonfly-colors";                            -- A color scheme support treesitter
 }
 require("treesitter")
 require("lsp")
 require("telescope")
 require("which-key").setup{}
-require("github-theme").setup()
---vim.cmd [[colorscheme moonfly]]
+vim.cmd [[colorscheme moonfly]]
 
 --[[vim-airline]]
 vim.g["airline#extensions#syntastic#enabled"] = 1
