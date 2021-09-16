@@ -19,13 +19,20 @@ require "paq" {
     "vim-airline/vim-airline";                              -- Buffer line and status line
     "rlue/vim-barbaric";                                    -- Auto switch input method
     "folke/which-key.nvim";                                 -- Suggest key binding
-    "bluz71/vim-moonfly-colors";                            -- A color scheme support treesitter
+    "christianchiarulli/nvcode-color-schemes.vim";          -- A color scheme support treesitter
 }
 require("treesitter")
 require("lsp")
 require("telescope")
 require("which-key").setup{}
-vim.cmd [[colorscheme moonfly]]
+vim.g["nvcode_termcolors"] = 256
+vim.cmd [[
+colorscheme snazzy
+if (has("termguicolors"))
+    set termguicolors
+    hi LineNr ctermbg=NONE guibg=NONE
+endif
+]]
 
 --[[vim-airline]]
 vim.g["airline#extensions#syntastic#enabled"] = 1
