@@ -12,27 +12,27 @@ require "paq" {
     {"nvim-treesitter/nvim-treesitter", run=":TSUpdate"};   -- Better syntax highlighting
     "neovim/nvim-lspconfig";                                -- Mind the semi-colons
     "kabouzeid/nvim-lspinstall";                            -- Call "LspInstall <language>"
-    "nvim-lua/completion-nvim";                             -- Auto completion for lsp
-    "nvim-lua/plenary.nvim";
+    'hrsh7th/cmp-nvim-lsp';                                 -- 3 plugins for auto complete
+    'hrsh7th/cmp-buffer';
+    'hrsh7th/nvim-cmp';
+    "nvim-lua/plenary.nvim";                                -- required by telescope
     "nvim-telescope/telescope.nvim";                        -- Fuzzy file finder, and grep: Manual install rpigrep
     "tpope/vim-fugitive";                                   -- Git
     "vim-airline/vim-airline";                              -- Buffer line and status line
     "rlue/vim-barbaric";                                    -- Auto switch input method
     "folke/which-key.nvim";                                 -- Suggest key binding
-    "christianchiarulli/nvcode-color-schemes.vim";          -- A color scheme support treesitter
+    "navarasu/onedark.nvim";          -- A color scheme support treesitter
 }
 require("treesitter")
 require("lsp")
 require("telescope")
 require("which-key").setup{}
-vim.g["nvcode_termcolors"] = 256
 vim.cmd [[
-colorscheme snazzy
-if (has("termguicolors"))
-    set termguicolors
-    hi LineNr ctermbg=NONE guibg=NONE
-endif
+set termguicolors
+"colorscheme onedark
 ]]
+vim.g.onedark_style = 'deep'
+require('onedark').setup()
 
 --[[vim-airline]]
 vim.g["airline#extensions#syntastic#enabled"] = 1
