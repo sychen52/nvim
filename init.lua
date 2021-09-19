@@ -6,6 +6,7 @@ local install_path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.fn.system({'git', 'clone', '--depth=1', 'https://github.com/savq/paq-nvim.git', install_path})
 end
+l
 
 require "paq" {
     "savq/paq-nvim";                                        -- Let Paq manage itself
@@ -27,13 +28,20 @@ require("treesitter")
 require("lsp")
 require("telescope")
 require("which-key").setup{}
-vim.cmd [[
-"augroup MyColors
-"    autocmd!
-"    autocmd ColorScheme * highlight Pmenu ctermbg=black guibg=black
-"augroup END
-colorscheme onedark
-]]
+local onedark = require('onedark')
+onedark.setup({
+  hlgroups = {
+    Pmenu = {bg = 'black'},
+   }
+})
+onedark.load()
+--vim.cmd [[
+--augroup MyColors
+--    autocmd!
+--    autocmd ColorScheme * highlight Pmenu ctermbg=black guibg=black
+--augroup END
+--colorscheme onedark
+--]]
 
 --[[vim-airline]]
 vim.g["airline#extensions#syntastic#enabled"] = 1
