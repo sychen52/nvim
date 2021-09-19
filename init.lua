@@ -21,26 +21,20 @@ require "paq" {
     "vim-airline/vim-airline";                              -- Buffer line and status line
     "rlue/vim-barbaric";                                    -- Auto switch input method
     "folke/which-key.nvim";                                 -- Suggest key binding
-    "olimorris/onedark.nvim";                               -- A color scheme support treesitter
+    "RRethy/nvim-base16";                                   -- A colorscheme with treesitter support
 }
+
 require("treesitter")
 require("lsp")
 require("telescope")
 require("which-key").setup{}
-local onedark = require('onedark')
-onedark.setup({
-  hlgroups = {
-    Pmenu = {bg = 'black'},
-   }
-})
-onedark.load()
---vim.cmd [[
---augroup MyColors
---    autocmd!
---    autocmd ColorScheme * highlight Pmenu ctermbg=black guibg=black
---augroup END
---colorscheme onedark
---]]
+vim.cmd [[
+augroup MyColors
+    autocmd!
+    "autocmd ColorScheme * highlight Pmenu ctermbg=black guibg=black
+augroup END
+colorscheme base16-gruvbox-dark-hard
+]]
 
 --[[vim-airline]]
 vim.g["airline#extensions#syntastic#enabled"] = 1
