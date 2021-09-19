@@ -19,6 +19,7 @@ require "paq" {
     "nvim-telescope/telescope.nvim";                        -- Fuzzy file finder, and grep: Manual install rpigrep
     "tpope/vim-fugitive";                                   -- Git
     "vim-airline/vim-airline";                              -- Buffer line and status line
+    "vim-airline/vim-airline-themes";                       -- Buffer line and status line
     "rlue/vim-barbaric";                                    -- Auto switch input method
     "folke/which-key.nvim";                                 -- Suggest key binding
     "RRethy/nvim-base16";                                   -- A colorscheme with treesitter support
@@ -31,9 +32,9 @@ require("which-key").setup{}
 vim.cmd [[
 augroup MyColors
     autocmd!
-    "autocmd ColorScheme * highlight Pmenu ctermbg=black guibg=black
+    autocmd ColorScheme * highlight Pmenu ctermbg=black guibg=black
 augroup END
-colorscheme base16-gruvbox-dark-hard
+colorscheme base16-snazzy
 ]]
 
 --[[vim-airline]]
