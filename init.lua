@@ -22,7 +22,7 @@ require "paq" {
     "vim-airline/vim-airline-themes";                       -- Buffer line and status line
     "rlue/vim-barbaric";                                    -- Auto switch input method
     "folke/which-key.nvim";                                 -- Suggest key binding
-    "RRethy/nvim-base16";                                   -- A colorscheme with treesitter support
+    "christianchiarulli/nvcode-color-schemes.vim";          -- A colorscheme with treesitter support
 }
 
 require("treesitter")
@@ -32,12 +32,9 @@ require("which-key").setup{}
 vim.cmd [[
 augroup MyColors
     autocmd!
-    autocmd ColorScheme base16-* highlight Pmenu ctermbg=black guibg=black
-    autocmd ColorScheme base16-* highlight DiffChange ctermbg=blue guibg=blue
-    autocmd ColorScheme base16-* highlight DiffAdd ctermbg=green guibg=green
-    autocmd ColorScheme base16-* highlight DiffDelete ctermbg=red guibg=red
+    autocmd ColorScheme snazzy highlight Pmenu ctermbg=black guibg=black
 augroup END
-colorscheme base16-snazzy
+colorscheme snazzy
 ]]
 
 --[[vim-airline]]
@@ -47,6 +44,7 @@ vim.g["airline#extensions#tabline#enabled"] = 1
 vim.g["airline#extensions#tagbar#enabled"] = 1
 vim.g["airline_skip_empty_sections"] = 1
 vim.g["airline#extensions#tabline#ignore_bufadd_pat"] = '!|defx|gundo|nerd_tree|startify|tagbar|undotree|vimfiler'
+vim.g["airline_theme"] = 'base16'
 
 
 --[[netrw]]
