@@ -32,7 +32,10 @@ require("which-key").setup{}
 vim.cmd [[
 augroup MyColors
     autocmd!
-    autocmd ColorScheme * highlight Pmenu ctermbg=black guibg=black
+    autocmd ColorScheme base16-* highlight Pmenu ctermbg=black guibg=black
+    autocmd ColorScheme base16-* highlight DiffChange ctermbg=blue guibg=blue
+    autocmd ColorScheme base16-* highlight DiffAdd ctermbg=green guibg=green
+    autocmd ColorScheme base16-* highlight DiffDelete ctermbg=red guibg=red
 augroup END
 colorscheme base16-snazzy
 ]]
