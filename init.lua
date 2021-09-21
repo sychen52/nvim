@@ -51,7 +51,7 @@ vim.g["mapleader"] = " "
 vim.opt.background = "dark"
 vim.opt.mouse = "a"                      -- Enable mouse in all mode
 vim.opt.path:append("**")
-vim.opt.clipboard = "unnamed"        -- Use system clipboard by default
+vim.opt.clipboard:append("unnamedplus")  -- Use system clipboard by default
 
 
 vim.opt.expandtab = true                 -- Use spaces instead of tabs
