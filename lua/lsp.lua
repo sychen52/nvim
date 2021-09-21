@@ -1,12 +1,22 @@
 --[[Setup nvim-cmp]]
-local cmp = require'cmp'
-
--- Use <Tab> and <S-Tab> to navigate through popup menu
-vim.api.nvim_set_keymap('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {noremap=true, expr=true})
-vim.api.nvim_set_keymap('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {noremap=true, expr=true})
 -- Set completeopt to have a better completion experience
 vim.opt.completeopt = {'menuone', 'noinsert', 'noselect'}
-cmp.setup({
+
+local has_words_before = function()
+    if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+        return false
+    end
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
+local feedkey = function(key, mode)
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+end
+
+
+local cmp = require('cmp')
+cmp.setup {
     snippet = {
         expand = function(args)
             -- For `vsnip` user.
@@ -16,7 +26,7 @@ cmp.setup({
             -- require('luasnip').lsp_expand(args.body)
 
             -- For `ultisnips` user.
-            -- vim.fn["vsnip#anonymous"](args.body)
+            -- vim.fn["UltiSnips#Anon"](args.body)
         end,
     },
     mapping = {
@@ -25,12 +35,31 @@ cmp.setup({
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.close(),
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ["<Tab>"] = cmp.mapping(function(fallback)
+            if vim.fn.pumvisible() == 1 then
+                feedkey("<C-n>", "n")
+            elseif vim.fn["vsnip#available"]() == 1 then
+                feedkey("<Plug>(vsnip-expand-or-jump)", "")
+            elseif has_words_before() then
+                cmp.complete()
+            else
+                fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+            end
+        end, { "i", "s" }),
+
+        ["<S-Tab>"] = cmp.mapping(function()
+            if vim.fn.pumvisible() == 1 then
+                feedkey("<C-p>", "n")
+            elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+                feedkey("<Plug>(vsnip-jump-prev)", "")
+            end
+        end, { "i", "s" }),
     },
     sources = {
         { name = 'nvim_lsp' },
 
         -- For vsnip user.
-        -- { name = 'vsnip' },
+        { name = 'vsnip' },
 
         -- For luasnip user.
         -- { name = 'luasnip' },
@@ -39,8 +68,8 @@ cmp.setup({
         -- { name = 'ultisnips' },
 
         { name = 'buffer' },
-    }
-})
+    },
+}
 
 --[[lspconfig]]
 local nvim_lsp = require('lspconfig')

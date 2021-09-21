@@ -12,6 +12,8 @@ require "paq" {
     'hrsh7th/cmp-nvim-lsp';                                 -- 3 plugins for auto complete
     'hrsh7th/cmp-buffer';
     'hrsh7th/nvim-cmp';
+    'hrsh7th/cmp-vsnip';
+    'hrsh7th/vim-vsnip';
     "nvim-lua/plenary.nvim";                                -- required by telescope
     "nvim-telescope/telescope.nvim";                        -- Fuzzy file finder, and grep: Manual install rpigrep
     "tpope/vim-fugitive";                                   -- Git
