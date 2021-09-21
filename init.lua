@@ -1,6 +1,3 @@
-vim.g["mapleader"] = " "
-vim.cmd [[autocmd BufEnter *.tpp :setlocal filetype=cpp]]
-
 local install_path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -25,16 +22,13 @@ require "paq" {
     "christianchiarulli/nvcode-color-schemes.vim";          -- A colorscheme with treesitter support
 }
 
-require("treesitter")
-require("lsp")
-require("telescope")
-require("which-key").setup{}
 vim.cmd [[
 augroup MyColors
     autocmd!
     autocmd ColorScheme snazzy highlight Pmenu ctermbg=black guibg=black
 augroup END
 colorscheme snazzy
+autocmd BufEnter *.tpp :setlocal filetype=cpp " Treat tpp as c++ files
 ]]
 
 --[[vim-airline]]
@@ -46,7 +40,6 @@ vim.g["airline_skip_empty_sections"] = 1
 vim.g["airline#extensions#tabline#ignore_bufadd_pat"] = '!|defx|gundo|nerd_tree|startify|tagbar|undotree|vimfiler'
 vim.g["airline_theme"] = 'base16'
 
-
 --[[netrw]]
 vim.g["netrw_liststyle"] = 3
 vim.g["netrw_browse_split"] = 4
@@ -54,10 +47,12 @@ vim.g["netrw_altv"] = 1
 vim.g["netrw_winsize"] = 20
 vim.g["netrw_list_hide"] = '.*.swp$,.*.pyc'
 
+vim.g["mapleader"] = " "
 vim.opt.background = "dark"
 vim.opt.mouse = "a"                      -- Enable mouse in all mode
 vim.opt.path:append("**")
-vim.opt.clipboard = "unnamedplus"        -- Use system clipboard by default
+vim.opt.clipboard = "unnamed"        -- Use system clipboard by default
+
 
 vim.opt.expandtab = true                 -- Use spaces instead of tabs
 vim.opt.ignorecase = true                -- Ignore case
@@ -88,3 +83,7 @@ vim.api.nvim_set_keymap('n', '<C-k>',  '<C-w><C-k>', {noremap=true})        --Sw
 vim.api.nvim_set_keymap('n', '<C-h>',  '<C-w><C-h>', {noremap=true})        --Switch between windows
 vim.api.nvim_set_keymap('n', '<C-l>',  '<C-w><C-l>', {noremap=true})        --Switch between windows
 
+require("treesitter")
+require("lsp")
+require("telescope")
+require("which-key").setup{}
