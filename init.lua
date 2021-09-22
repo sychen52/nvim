@@ -25,7 +25,10 @@ require "paq" {
     "folke/which-key.nvim";                                 -- Suggest key binding
 }
 
-require('material.functions').change_style("monokai")
+vim.api.nvim_command [[
+autocmd ColorScheme * highlight Pmenu ctermbg=black guibg=black
+autocmd BufEnter *.tpp :setlocal filetype=cpp " Treat tpp as c++ files
+]]
 
 --[[vim-airline]]
 vim.g["airline#extensions#syntastic#enabled"] = 1
@@ -82,3 +85,4 @@ require("treesitter")
 require("lsp")
 require("telescope")
 require("which-key").setup{}
+require('material.functions').change_style("monokai")
