@@ -15,7 +15,7 @@ require "paq" {
     "L3MON4D3/LuaSnip";
     "saadparwaiz1/cmp_luasnip";
     "ray-x/lsp_signature.nvim";                             -- Show function signature as you type
-    "ray-x/aurora";                                         -- A colorscheme with treesitter support
+    "ray-x/material_plus.nvim";                             -- A colorscheme with treesitter support
     "nvim-lua/plenary.nvim";                                -- required by telescope
     "nvim-telescope/telescope.nvim";                        -- Fuzzy file finder, and grep: Manual install rpigrep
     "tpope/vim-fugitive";                                   -- Git
@@ -23,18 +23,9 @@ require "paq" {
     "vim-airline/vim-airline-themes";                       -- Buffer line and status line
     "rlue/vim-barbaric";                                    -- Auto switch input method
     "folke/which-key.nvim";                                 -- Suggest key binding
-    --"christianchiarulli/nvcode-color-schemes.vim";          -- A colorscheme with treesitter support
-
 }
 
-vim.cmd [[
-augroup MyColors
-    autocmd!
-    autocmd ColorScheme * highlight Pmenu ctermbg=black guibg=black
-augroup END
-colorscheme aurora
-autocmd BufEnter *.tpp :setlocal filetype=cpp " Treat tpp as c++ files
-]]
+require('material.functions').change_style("monokai")
 
 --[[vim-airline]]
 vim.g["airline#extensions#syntastic#enabled"] = 1
@@ -43,7 +34,6 @@ vim.g["airline#extensions#tabline#enabled"] = 1
 vim.g["airline#extensions#tagbar#enabled"] = 1
 vim.g["airline_skip_empty_sections"] = 1
 vim.g["airline#extensions#tabline#ignore_bufadd_pat"] = '!|defx|gundo|nerd_tree|startify|tagbar|undotree|vimfiler'
-vim.g["airline_theme"] = 'base16'
 
 --[[netrw]]
 vim.g["netrw_liststyle"] = 3
