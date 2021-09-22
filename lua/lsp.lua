@@ -1,6 +1,6 @@
 --[[Setup nvim-cmp]]
 -- Set completeopt to have a better completion experience
-vim.opt.completeopt = {'menuone', 'noinsert', 'noselect'}
+vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 
 local has_words_before = function()
     if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
@@ -10,20 +10,23 @@ local has_words_before = function()
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
-local feedkey = function(key, mode)
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+local feedkey = function(key)
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), "n", true)
 end
 
-
-local cmp = require('cmp')
+local luasnip = require("luasnip")
+local cmp = require("cmp")
 cmp.setup {
+    documentation = {
+        border = "single", -- the border option is the same as `|help nvim_open_win|`
+    };
     snippet = {
         expand = function(args)
             -- For `vsnip` user.
-            vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` user.
+            -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` user.
 
             -- For `luasnip` user.
-            -- require('luasnip').lsp_expand(args.body)
+            require('luasnip').lsp_expand(args.body)
 
             -- For `ultisnips` user.
             -- vim.fn["UltiSnips#Anon"](args.body)
@@ -37,21 +40,22 @@ cmp.setup {
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
         ["<Tab>"] = cmp.mapping(function(fallback)
             if vim.fn.pumvisible() == 1 then
-                feedkey("<C-n>", "n")
-            elseif vim.fn["vsnip#available"]() == 1 then
-                feedkey("<Plug>(vsnip-expand-or-jump)", "")
+                feedkey("<C-n>")
+            elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
             elseif has_words_before() then
                 cmp.complete()
             else
                 fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
             end
         end, { "i", "s" }),
-
-        ["<S-Tab>"] = cmp.mapping(function()
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
             if vim.fn.pumvisible() == 1 then
-                feedkey("<C-p>", "n")
-            elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-                feedkey("<Plug>(vsnip-jump-prev)", "")
+                feedkey("<C-p>")
+            elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
             end
         end, { "i", "s" }),
     },
@@ -59,10 +63,10 @@ cmp.setup {
         { name = 'nvim_lsp' },
 
         -- For vsnip user.
-        { name = 'vsnip' },
+        -- { name = 'vsnip' },
 
         -- For luasnip user.
-        -- { name = 'luasnip' },
+        { name = 'luasnip' },
 
         -- For ultisnips user.
         -- { name = 'ultisnips' },
@@ -70,6 +74,9 @@ cmp.setup {
         { name = 'buffer' },
     },
 }
+
+--[[lsp_signature]]
+require'lsp_signature'.setup()
 
 --[[lspconfig]]
 local nvim_lsp = require('lspconfig')

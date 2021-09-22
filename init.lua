@@ -9,11 +9,13 @@ require "paq" {
     {"nvim-treesitter/nvim-treesitter", run=":TSUpdate"};   -- Better syntax highlighting
     "neovim/nvim-lspconfig";                                -- Mind the semi-colons
     "kabouzeid/nvim-lspinstall";                            -- Call "LspInstall <language>"
-    'hrsh7th/cmp-nvim-lsp';                                 -- 3 plugins for auto complete
-    'hrsh7th/cmp-buffer';
-    'hrsh7th/nvim-cmp';
-    'hrsh7th/cmp-vsnip';
-    'hrsh7th/vim-vsnip';
+    "hrsh7th/cmp-nvim-lsp";                                 -- 5 plugins for auto complete
+    "hrsh7th/cmp-buffer";
+    "hrsh7th/nvim-cmp";
+    "L3MON4D3/LuaSnip";
+    "saadparwaiz1/cmp_luasnip";
+    "ray-x/lsp_signature.nvim";                             -- Show function signature as you type
+    "ray-x/aurora";                                         -- A colorscheme with treesitter support
     "nvim-lua/plenary.nvim";                                -- required by telescope
     "nvim-telescope/telescope.nvim";                        -- Fuzzy file finder, and grep: Manual install rpigrep
     "tpope/vim-fugitive";                                   -- Git
@@ -21,15 +23,16 @@ require "paq" {
     "vim-airline/vim-airline-themes";                       -- Buffer line and status line
     "rlue/vim-barbaric";                                    -- Auto switch input method
     "folke/which-key.nvim";                                 -- Suggest key binding
-    "christianchiarulli/nvcode-color-schemes.vim";          -- A colorscheme with treesitter support
+    --"christianchiarulli/nvcode-color-schemes.vim";          -- A colorscheme with treesitter support
+
 }
 
 vim.cmd [[
 augroup MyColors
     autocmd!
-    autocmd ColorScheme snazzy highlight Pmenu ctermbg=black guibg=black
+    autocmd ColorScheme * highlight Pmenu ctermbg=black guibg=black
 augroup END
-colorscheme snazzy
+colorscheme aurora
 autocmd BufEnter *.tpp :setlocal filetype=cpp " Treat tpp as c++ files
 ]]
 
@@ -54,7 +57,6 @@ vim.opt.background = "dark"
 vim.opt.mouse = "a"                      -- Enable mouse in all mode
 vim.opt.path:append("**")
 vim.opt.clipboard:append("unnamedplus")  -- Use system clipboard by default. You need xclip for this to work
-
 
 vim.opt.expandtab = true                 -- Use spaces instead of tabs
 vim.opt.ignorecase = true                -- Ignore case
