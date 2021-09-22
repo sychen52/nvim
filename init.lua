@@ -34,6 +34,7 @@ vim.g["airline#extensions#tabline#enabled"] = 1
 vim.g["airline#extensions#tagbar#enabled"] = 1
 vim.g["airline_skip_empty_sections"] = 1
 vim.g["airline#extensions#tabline#ignore_bufadd_pat"] = '!|defx|gundo|nerd_tree|startify|tagbar|undotree|vimfiler'
+vim.g["airline_theme"] = 'base16'
 
 --[[netrw]]
 vim.g["netrw_liststyle"] = 3
