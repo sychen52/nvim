@@ -76,7 +76,11 @@ cmp.setup {
 }
 
 --[[lsp_signature]]
-require'lsp_signature'.setup()
+require'lsp_signature'.setup {
+    cfg = {
+        hint_enable = false,
+    }
+}
 
 --[[lspconfig]]
 local nvim_lsp = require('lspconfig')
