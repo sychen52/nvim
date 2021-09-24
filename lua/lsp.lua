@@ -20,45 +20,59 @@ cmp.setup {
     documentation = {
         border = "single", -- the border option is the same as `|help nvim_open_win|`
     };
-    snippet = {
-        expand = function(args)
-            -- For `vsnip` user.
-            -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` user.
-
-            -- For `luasnip` user.
-            require('luasnip').lsp_expand(args.body)
-
-            -- For `ultisnips` user.
-            -- vim.fn["UltiSnips#Anon"](args.body)
-        end,
-    },
     mapping = {
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.close(),
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        ["<Tab>"] = cmp.mapping(function(fallback)
-            if vim.fn.pumvisible() == 1 then
-                feedkey("<C-n>")
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-            elseif has_words_before() then
-                cmp.complete()
-            else
-                fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+        ['<C-Space>'] = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Insert,
+            select = true,
+        },
+
+        ['<Tab>'] = function(fallback)
+            if not cmp.select_next_item() then
+                if vim.bo.buftype ~= 'prompt' and has_words_before() then
+                    cmp.complete()
+                else
+                    fallback()
+                end
             end
-        end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if vim.fn.pumvisible() == 1 then
-                feedkey("<C-p>")
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-            else
-                fallback()
+        end,
+
+        ['<S-Tab>'] = function(fallback)
+            if not cmp.select_prev_item() then
+                if vim.bo.buftype ~= 'prompt' and has_words_before() then
+                    cmp.complete()
+                else
+                    fallback()
+                end
             end
-        end, { "i", "s" }),
+        end,
     },
+
+--    snippet = {
+--        -- We recommend using *actual* snippet engine.
+--        -- It's a simple implementation so it might not work in some of the cases.
+--        expand = function(args)
+--            local line_num, col = unpack(vim.api.nvim_win_get_cursor(0))
+--            local line_text = vim.api.nvim_buf_get_lines(0, line_num - 1, line_num, true)[1]
+--            local indent = string.match(line_text, '^%s*')
+--            local replace = vim.split(args.body, '\n', true)
+--            local surround = string.match(line_text, '%S.*') or ''
+--            local surround_end = surround:sub(col)
+--
+--            replace[1] = surround:sub(0, col - 1)..replace[1]
+--            replace[#replace] = replace[#replace]..(#surround_end > 1 and ' ' or '')..surround_end
+--            if indent ~= '' then
+--                for i, line in ipairs(replace) do
+--                    replace[i] = indent..line
+--                end
+--            end
+--
+--            vim.api.nvim_buf_set_lines(0, line_num - 1, line_num, true, replace)
+--        end,
+--    },
     sources = {
         { name = 'nvim_lsp' },
 
@@ -66,12 +80,12 @@ cmp.setup {
         -- { name = 'vsnip' },
 
         -- For luasnip user.
-        { name = 'luasnip' },
+        -- { name = 'luasnip' },
 
         -- For ultisnips user.
         -- { name = 'ultisnips' },
 
-        { name = 'buffer' },
+        -- { name = 'buffer' },
     },
 }
 

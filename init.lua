@@ -9,11 +9,11 @@ require "paq" {
     {"nvim-treesitter/nvim-treesitter", run=":TSUpdate"};   -- Better syntax highlighting
     "neovim/nvim-lspconfig";                                -- Mind the semi-colons
     "kabouzeid/nvim-lspinstall";                            -- Call "LspInstall <language>"
-    "hrsh7th/cmp-nvim-lsp";                                 -- 5 plugins for auto complete
-    "hrsh7th/cmp-buffer";
-    "hrsh7th/nvim-cmp";
-    "L3MON4D3/LuaSnip";
-    "saadparwaiz1/cmp_luasnip";
+    "hrsh7th/nvim-cmp";                                     -- 5 plugins for auto complete
+    "hrsh7th/cmp-nvim-lsp";
+    --"hrsh7th/cmp-buffer";
+    --"L3MON4D3/LuaSnip";
+    --"saadparwaiz1/cmp_luasnip";
     "ray-x/lsp_signature.nvim";                             -- Show function signature as you type
     "ray-x/material_plus.nvim";                             -- A colorscheme with treesitter support
     "nvim-lua/plenary.nvim";                                -- required by telescope
