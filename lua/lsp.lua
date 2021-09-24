@@ -14,7 +14,7 @@ local feedkey = function(key)
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), "n", true)
 end
 
-local luasnip = require("luasnip")
+--local luasnip = require("luasnip")
 local cmp = require("cmp")
 cmp.setup {
     documentation = {
