@@ -23,6 +23,7 @@ require "paq" {
     "vim-airline/vim-airline-themes";                       -- Buffer line and status line
     "rlue/vim-barbaric";                                    -- Auto switch input method
     "folke/which-key.nvim";                                 -- Suggest key binding
+    "sychen52/gF-python-traceback";
 }
 
 vim.api.nvim_command [[
