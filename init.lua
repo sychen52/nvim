@@ -24,6 +24,7 @@ require "paq" {
     "rlue/vim-barbaric";                                    -- Auto switch input method
     "folke/which-key.nvim";                                 -- Suggest key binding
     "sychen52/gF-python-traceback";
+    "sychen52/smart-term-esc.nvim";
 }
 
 vim.api.nvim_command [[
@@ -86,3 +87,4 @@ require("lsp")
 require("telescope")
 require("which-key").setup{}
 require('material.functions').change_style("monokai")
+require('smart-term-esc').setup()
