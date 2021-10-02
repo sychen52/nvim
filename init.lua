@@ -52,8 +52,9 @@ vim.g["mapleader"] = " "
 vim.opt.background = "dark"
 vim.opt.mouse = "a"                                         -- Enable mouse in all mode
 vim.opt.path:append("**")
-vim.opt.clipboard:append("unnamedplus")                     -- Use system clipboard by default. You need xclip for this to work
+vim.opt.clipboard:append("unnamed")                         -- unnamed is mouse mid button; unnamedplus is ctrl-c. You need xclip for this to work
 vim.opt.complete:append("kspell")                           -- complete based on spell is ":set spell"
+vim.opt.inccommand = 'split'
 
 vim.opt.expandtab = true                                    -- Use spaces instead of tabs
 vim.opt.ignorecase = true                                   -- Ignore case
