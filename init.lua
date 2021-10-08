@@ -73,7 +73,7 @@ vim.opt.splitright = true                                   -- Put new windows r
 vim.opt.tabstop = 4                                         -- Number of spaces tabs count for
 vim.opt.termguicolors = true                                -- True color support
 vim.opt.hidden = true                                       -- Enable background buffers
-vim.opt.wildmode = {'longest:full', full}                   -- Command-line completion mode; longest:full for the first tab, full for the second tab
+vim.opt.wildmode = {'longest:full', 'full'}                   -- Command-line completion mode; longest:full for the first tab, full for the second tab
 --vim.opt.wrap = false                                      -- Disable line wrap
 
 vim.api.nvim_set_keymap('n', '<Tab>',  ':bn<CR>', {noremap=true})           --Buffer nav
