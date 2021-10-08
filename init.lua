@@ -54,7 +54,9 @@ vim.opt.mouse = "a"                                         -- Enable mouse in a
 vim.opt.path:append("**")
 vim.opt.clipboard:append("unnamed")                         -- unnamed is mouse mid button; unnamedplus is ctrl-c. You need xclip for this to work
 vim.opt.complete:append("kspell")                           -- complete based on spell is ":set spell"
-vim.opt.inccommand = 'split'
+vim.opt.inccommand = 'split'                                -- live view of replace. 'split' has a locallist; 'nosplit' does not.
+vim.opt.foldmethod = 'indent'
+vim.opt.foldlevel = 99                                      -- unfolded by default; use za to alter
 
 vim.opt.expandtab = true                                    -- Use spaces instead of tabs
 vim.opt.ignorecase = true                                   -- Ignore case
