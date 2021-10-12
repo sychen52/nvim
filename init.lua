@@ -5,24 +5,25 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 require "paq" {
-    "savq/paq-nvim";                                        -- Let Paq manage itself
-    {"nvim-treesitter/nvim-treesitter", run=":TSUpdate"};   -- Better syntax highlighting
-    "neovim/nvim-lspconfig";                                -- Mind the semi-colons
-    "kabouzeid/nvim-lspinstall";                            -- Call "LspInstall <language>"
-    "hrsh7th/nvim-cmp";                                     -- 5 plugins for auto complete
+    "savq/paq-nvim";                                                -- Let Paq manage itself
+    {"nvim-treesitter/nvim-treesitter", run=":TSUpdate"};           -- Better syntax highlighting
+    "neovim/nvim-lspconfig";                                        -- Mind the semi-colons
+    "kabouzeid/nvim-lspinstall";                                    -- Call "LspInstall <language>"
+    "hrsh7th/nvim-cmp";                                             -- 5 plugins for auto complete
     "hrsh7th/cmp-nvim-lsp";
     --"hrsh7th/cmp-buffer";
     --"L3MON4D3/LuaSnip";
     --"saadparwaiz1/cmp_luasnip";
-    "ray-x/lsp_signature.nvim";                             -- Show function signature as you type
-    "ray-x/material_plus.nvim";                             -- A colorscheme with treesitter support
-    "nvim-lua/plenary.nvim";                                -- required by telescope
-    "nvim-telescope/telescope.nvim";                        -- Fuzzy file finder, and grep: Manual install rpigrep
-    "tpope/vim-fugitive";                                   -- Git
-    "vim-airline/vim-airline";                              -- Buffer line and status line
-    "vim-airline/vim-airline-themes";                       -- Buffer line and status line
-    "rlue/vim-barbaric";                                    -- Auto switch input method
-    "folke/which-key.nvim";                                 -- Suggest key binding
+    "ray-x/lsp_signature.nvim";                                     -- Show function signature as you type
+    "ray-x/material_plus.nvim";                                     -- A colorscheme with treesitter support
+    "nvim-lua/plenary.nvim";                                        -- required by telescope
+    "nvim-telescope/telescope.nvim";                                -- Fuzzy file finder, and grep: Manual install rpigrep
+    "tpope/vim-fugitive";                                           -- Git
+    "vim-airline/vim-airline";                                      -- Buffer line and status line
+    "vim-airline/vim-airline-themes";                               -- Buffer line and status line
+    "rlue/vim-barbaric";                                            -- Auto switch input method
+    "folke/which-key.nvim";                                         -- Suggest key binding
+    "iamcco/markdown-preview.nvim", run":call mkdp#util#install()"; -- Markdown preview
     "sychen52/gF-python-traceback";
     "sychen52/smart-term-esc.nvim";
 }
