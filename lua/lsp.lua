@@ -144,8 +144,8 @@ lsp_installer.on_server_ready(function(server)
         opts. settings = {
             python = {
                 analysis = {
-                    diagnosticMode = "openFilesOnly",
-                    typeCheckingMode = "off"; -- when return type of a function has too many possibilities, the LSP will hang. However, this also means it will no longer check for the type or even number of arguments passed into a function.
+                    diagnosticMode = "openFilesOnly", -- From some reason, this can also "solve" the problem I mentioned below.
+                    --typeCheckingMode = "off"; -- When return type of a function has too many possibilities, the LSP will hang. However, this also means it will no longer check for the type or even number of arguments passed into a function.
                 }
             }
         }
