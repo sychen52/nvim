@@ -89,7 +89,7 @@ vim.api.nvim_set_keymap('n', '<C-l>',  '<C-w><C-l>', {noremap=true})        --Sw
 require("treesitter")
 require("lsp")
 require("telescope")
-require("which-key").setup{}
+require("which-key").setup()
 require('material')
 require('material.functions').change_style("monokai")
 require('smart-term-esc').setup()
