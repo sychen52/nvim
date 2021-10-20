@@ -96,9 +96,6 @@ cfg = {
 require'lsp_signature'.setup (cfg)
 
 --[[lspconfig]]
-local nvim_lsp = require('lspconfig')
-local lsp_install = require('lspinstall')
-
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -132,25 +129,23 @@ local on_attach = function(client, bufnr)
 
 end
 
-local function setup_servers()
-    lsp_install.setup()
-    local servers = lsp_install.installed_servers()
-    for _, server in pairs(servers) do
-        nvim_lsp[server].setup {
-            capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-            on_attach = on_attach,
-            flags = {
-                debounce_text_changes = 150,
-            }
+local lsp_installer = require("nvim-lsp-installer")
+
+lsp_installer.on_server_ready(function(server)
+    local opts = {
+        capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+        on_attach = on_attach,
+        flags = {
+            debounce_text_changes = 150,
         }
-    end
-end
+    }
+    -- (optional) Customize the options passed to the server
+    -- if server.name == "tsserver" then
+    --     opts.root_dir = function() ... end
+    -- end
 
-setup_servers()
-
--- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
-lsp_install.post_install_hook = function ()
-    setup_servers() -- reload installed servers
-    vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
-end
+    -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
+    server:setup(opts)
+    vim.cmd [[ do User LspAttachBuffers ]]
+end)
 

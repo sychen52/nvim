@@ -8,7 +8,7 @@ require "paq" {
     "savq/paq-nvim";                                                    -- Let Paq manage itself
     {"nvim-treesitter/nvim-treesitter", run=":TSUpdate"};               -- Better syntax highlighting
     "neovim/nvim-lspconfig";                                            -- Mind the semi-colons
-    "kabouzeid/nvim-lspinstall";                                        -- Call "LspInstall <language>"
+    "williamboman/nvim-lsp-installer";                                  -- Install LSPs
     "hrsh7th/nvim-cmp";                                                 -- 5 plugins for auto complete
     "hrsh7th/cmp-nvim-lsp";
     --"hrsh7th/cmp-buffer";
