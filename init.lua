@@ -34,7 +34,7 @@ autocmd BufEnter *.tpp :setlocal filetype=cpp " Treat tpp as c++ files
 ]]
 
 
-_G.show_status = function()
+_G.show_position = function()
     local ret = require("nvim-treesitter").statusline({
         indicator_size = 200,
         type_patterns = {'file', 'class', 'function', 'method'},
@@ -43,7 +43,7 @@ _G.show_status = function()
     return ret
 end
 --[[vim-airline]]
-vim.g["airline_section_c"] = '%{v:lua.show_status()}'
+vim.g["airline_section_c"] = '%{v:lua.show_position()}'
 vim.g["airline#extensions#syntastic#enabled"] = 1
 vim.g["airline#extensions#branch#enabled"] = 1
 vim.g["airline#extensions#tabline#enabled"] = 1
@@ -91,10 +91,10 @@ vim.opt.wildmode = {'longest:full', 'full'}                 -- Command-line comp
 
 vim.api.nvim_set_keymap('n', '<Tab>',  ':bn<CR>', {noremap=true})           --Buffer nav
 vim.api.nvim_set_keymap('n', '<S-Tab>', ':bp<CR>', {noremap=true})          --Buffer nav
-vim.api.nvim_set_keymap('n', '<C-j>',  '<C-w><C-j>', {noremap=true})        --Switch between windows
-vim.api.nvim_set_keymap('n', '<C-k>',  '<C-w><C-k>', {noremap=true})        --Switch between windows
-vim.api.nvim_set_keymap('n', '<C-h>',  '<C-w><C-h>', {noremap=true})        --Switch between windows
-vim.api.nvim_set_keymap('n', '<C-l>',  '<C-w><C-l>', {noremap=true})        --Switch between windows
+--vim.api.nvim_set_keymap('n', '<C-j>',  '<C-w><C-j>', {noremap=true})        --Switch between windows
+--vim.api.nvim_set_keymap('n', '<C-k>',  '<C-w><C-k>', {noremap=true})        --Switch between windows
+--vim.api.nvim_set_keymap('n', '<C-h>',  '<C-w><C-h>', {noremap=true})        --Switch between windows
+--vim.api.nvim_set_keymap('n', '<C-l>',  '<C-w><C-l>', {noremap=true})        --Switch between windows
 
 require("treesitter")
 require("lsp")
