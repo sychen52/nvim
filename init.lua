@@ -33,7 +33,17 @@ autocmd ColorScheme * highlight Pmenu ctermbg=black guibg=black
 autocmd BufEnter *.tpp :setlocal filetype=cpp " Treat tpp as c++ files
 ]]
 
+
+_G.show_status = function()
+    local ret = require("nvim-treesitter").statusline({
+        indicator_size = 200,
+        type_patterns = {'file', 'class', 'function', 'method'},
+        transform_fn = function(line) return line:gsub('%(.*%)', '') end,
+    })
+    return ret
+end
 --[[vim-airline]]
+vim.g["airline_section_c"] = '%{v:lua.show_status()}'
 vim.g["airline#extensions#syntastic#enabled"] = 1
 vim.g["airline#extensions#branch#enabled"] = 1
 vim.g["airline#extensions#tabline#enabled"] = 1
@@ -93,3 +103,4 @@ require("which-key").setup()
 require('material')
 require('material.functions').change_style("monokai")
 require('smart-term-esc').setup()
+
