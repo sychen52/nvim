@@ -21,14 +21,15 @@ cmp.setup {
         border = "single", -- the border option is the same as `|help nvim_open_win|`
     };
     mapping = {
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.close(),
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        ['<C-Space>'] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Insert,
-            select = true,
-        },
+        --['<C-Space>'] = cmp.mapping.confirm {
+        --    behavior = cmp.ConfirmBehavior.Insert,
+        --    select = true,
+        --},
 
         ['<Tab>'] = function(fallback)
             if not cmp.select_next_item() then
