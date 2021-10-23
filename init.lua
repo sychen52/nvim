@@ -33,17 +33,7 @@ autocmd ColorScheme * highlight Pmenu ctermbg=black guibg=black
 autocmd BufEnter *.tpp :setlocal filetype=cpp " Treat tpp as c++ files
 ]]
 
-
-_G.show_position = function()
-    local ret = require("nvim-treesitter").statusline({
-        indicator_size = 200,
-        type_patterns = {'file', 'class', 'function', 'method'},
-        transform_fn = function(line) return line:gsub('%(.*%)', '') end,
-    })
-    return ret
-end
 --[[vim-airline]]
-vim.g["airline_section_c"] = '%{v:lua.show_position()}'
 vim.g["airline#extensions#syntastic#enabled"] = 1
 vim.g["airline#extensions#branch#enabled"] = 1
 vim.g["airline#extensions#tabline#enabled"] = 1
@@ -95,6 +85,16 @@ vim.api.nvim_set_keymap('n', '<S-Tab>', ':bp<CR>', {noremap=true})          --Bu
 --vim.api.nvim_set_keymap('n', '<C-k>',  '<C-w><C-k>', {noremap=true})        --Switch between windows
 --vim.api.nvim_set_keymap('n', '<C-h>',  '<C-w><C-h>', {noremap=true})        --Switch between windows
 --vim.api.nvim_set_keymap('n', '<C-l>',  '<C-w><C-l>', {noremap=true})        --Switch between windows
+_G.show_position = function()
+    local ret = require("nvim-treesitter").statusline({
+        indicator_size = 200,
+        type_patterns = {'file', 'class', 'function', 'method'},
+        transform_fn = function(line) return line:gsub('%(.*%)', '') end,
+    })
+    print(ret)
+end
+vim.api.nvim_set_keymap('n', '<leader>p',  '<cmd>lua show_position()<CR>', {noremap=true})
+
 
 require("treesitter")
 require("lsp")
