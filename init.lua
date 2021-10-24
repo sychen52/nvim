@@ -19,6 +19,8 @@ require "paq" {
     "nvim-lua/plenary.nvim";                                            -- required by telescope
     "nvim-telescope/telescope.nvim";                                    -- Fuzzy file finder, and grep: Manual install rpigrep
     "tpope/vim-fugitive";                                               -- Git
+    "tpope/vim-dispatch";                                               -- :Make async
+    "Konfekt/vim-compilers";                                            -- Additional compilers such as python
     "vim-airline/vim-airline";                                          -- Buffer line and status line
     "vim-airline/vim-airline-themes";                                   -- Buffer line and status line
     "rlue/vim-barbaric";                                                -- Auto switch input method
