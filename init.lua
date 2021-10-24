@@ -55,7 +55,7 @@ vim.g["mapleader"] = " "
 vim.opt.background = "dark"
 vim.opt.mouse = "a"                                         -- Enable mouse in all mode
 vim.opt.path:append("**")
-vim.opt.clipboard:append("unnamed")                         -- unnamed is mouse mid button; unnamedplus is ctrl-c. You need xclip for this to work
+vim.opt.clipboard:append("unnamedplus")                         -- unnamed is mouse mid button; unnamedplus is ctrl-c. You need xclip for this to work
 vim.opt.complete:append("kspell")                           -- complete based on spell is ":set spell"
 vim.opt.inccommand = 'split'                                -- live view of replace. 'split' has a locallist; 'nosplit' does not.
 vim.opt.foldmethod = 'indent'
