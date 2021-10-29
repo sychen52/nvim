@@ -6,23 +6,25 @@ end
 
 require "paq" {
     "savq/paq-nvim";                                                    -- Let Paq manage itself
+    "nvim-lua/plenary.nvim";                                            -- utilities
+    "kyazdani42/nvim-web-devicons";                                     -- Needs nerd font for icons
     {"nvim-treesitter/nvim-treesitter", run=":TSUpdate"};               -- Better syntax highlighting
     "neovim/nvim-lspconfig";                                            -- Mind the semi-colons
     "williamboman/nvim-lsp-installer";                                  -- Install LSPs
     "hrsh7th/nvim-cmp";                                                 -- 5 plugins for auto complete
-    "hrsh7th/cmp-nvim-lsp";
+    "hrsh7th/cmp-nvim-lsp";                                             -- Lsp source for nvim-cmp
     --"hrsh7th/cmp-buffer";
     --"L3MON4D3/LuaSnip";
     --"saadparwaiz1/cmp_luasnip";
-    "ray-x/lsp_signature.nvim";                                         -- Show function signature as you type
     "ray-x/material_plus.nvim";                                         -- A colorscheme with treesitter support
-    "nvim-lua/plenary.nvim";                                            -- required by telescope
-    "nvim-telescope/telescope.nvim";                                    -- Fuzzy file finder, and grep: Manual install rpigrep
+    "nvim-telescope/telescope.nvim";                                    -- Fuzzy file finder, and grep: Manual install rpigrep,depend on plenary.nvim
     "tpope/vim-fugitive";                                               -- Git
     "tpope/vim-dispatch";                                               -- :Make async
     "Konfekt/vim-compilers";                                            -- Additional compilers such as python
-    "vim-airline/vim-airline";                                          -- Buffer line and status line
-    "vim-airline/vim-airline-themes";                                   -- Buffer line and status line
+    "akinsho/bufferline.nvim";                                          -- Bufferline: depend on nvim-web-devicons
+    "nvim-lualine/lualine.nvim";                                        -- Statusline: depend on nvim-web-devicons
+    --"vim-airline/vim-airline";                                          -- Buffer line and status line
+    --"vim-airline/vim-airline-themes";                                   -- Buffer line and status line
     "rlue/vim-barbaric";                                                -- Auto switch input method
     "folke/which-key.nvim";                                             -- Suggest key binding
     {"iamcco/markdown-preview.nvim", run=":call mkdp#util#install()"};  -- Markdown preview
@@ -34,15 +36,6 @@ vim.api.nvim_command [[
 autocmd ColorScheme * highlight Pmenu ctermbg=black guibg=black
 autocmd BufEnter *.tpp :setlocal filetype=cpp " Treat tpp as c++ files
 ]]
-
---[[vim-airline]]
-vim.g["airline#extensions#syntastic#enabled"] = 1
-vim.g["airline#extensions#branch#enabled"] = 1
-vim.g["airline#extensions#tabline#enabled"] = 1
-vim.g["airline#extensions#tagbar#enabled"] = 1
-vim.g["airline_skip_empty_sections"] = 1
-vim.g["airline#extensions#tabline#ignore_bufadd_pat"] = '!|defx|gundo|nerd_tree|startify|tagbar|undotree|vimfiler'
-vim.g["airline_theme"] = 'molokai'
 
 --[[netrw]]
 vim.g["netrw_liststyle"] = 3
@@ -93,12 +86,13 @@ _G.show_position = function()
 end
 vim.api.nvim_set_keymap('n', '<leader>p',  '<cmd>lua show_position()<CR>', {noremap=true})
 
-
 require("treesitter")
 require("lsp")
 require("telescope")
 require("which-key").setup()
-require('material')
-require('material.functions').change_style("monokai")
-require('smart-term-esc').setup()
+require("material")
+require("material.functions").change_style("monokai")
+require("smart-term-esc").setup()
+require("bufferline").setup{}
+require("evil_lualine")
 
