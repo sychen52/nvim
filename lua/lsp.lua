@@ -140,7 +140,7 @@ lsp_installer.on_server_ready(function(server)
     }
     -- (optional) Customize the options passed to the server
     if server.name == "pyright" then
-        opts. settings = {
+        opts.settings = {
             python = {
                 analysis = {
                     diagnosticMode = "openFilesOnly", -- From some reason, this can also "solve" the problem I mentioned below.
@@ -154,4 +154,3 @@ lsp_installer.on_server_ready(function(server)
     server:setup(opts)
     vim.cmd [[ do User LspAttachBuffers ]]
 end)
-
