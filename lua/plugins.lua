@@ -82,12 +82,16 @@ return require('packer').startup(function(use)
             run=':call mkdp#util#install()',
             config=function() vim.g["mkdp_preview_options"]={content_editable=true} end
         }
+        use {
+            'kyazdani42/nvim-tree.lua',
+            requires = 'kyazdani42/nvim-web-devicons',
+            config = function() require'nvim-tree'.setup {} end
+        }
         use 'sychen52/gF-python-traceback'
         use {
             'sychen52/smart-term-esc.nvim',
             config=function() require("smart-term-esc").setup() end
         }
-        use 'wlangstroth/vim-racket'
         -- Automatically set up your configuration after cloning packer.nvim
         -- Put this at the end after all plugins
         if packer_bootstrap then
