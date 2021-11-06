@@ -80,7 +80,7 @@ return require('packer').startup(function(use)
         use {
             'iamcco/markdown-preview.nvim',
             run=':call mkdp#util#install()',
-            cmd = 'MarkdownPreview'
+            config=function() vim.g["mkdp_preview_options"]={content_editable=true} end
         }
         use 'sychen52/gF-python-traceback'
         use {
