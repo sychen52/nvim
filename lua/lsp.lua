@@ -150,6 +150,14 @@ lsp_installer.on_server_ready(function(server)
         }
     end
 
+    if server.name == "ltex" then
+        opts.settings = {
+            ltex = {
+                completionEnabled = true
+            }
+        }
+    end
+
     -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
     server:setup(opts)
     vim.cmd [[ do User LspAttachBuffers ]]

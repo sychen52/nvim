@@ -40,61 +40,64 @@ return require('packer').startup(function(use)
         requires = {'nvim-lua/plenary.nvim'},
         config=function() require("telescope") end
     }
+    --use {
+    --    -- magit: it does not have merge tool for now.
+    --    'TimUntersberger/neogit',
+    --    cmd = 'Neogit',  -- without this neovim will crash on open
+    --    requires = {'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim'},
+    --    config = function()
+    --        require("neogit").setup {
+    --            disable_commit_confirmation = true,
+    --            integrations={diffview=true}
+    --        }
+    --    end
+    --}
+    -- Git
+    use 'tpope/vim-fugitive'
+    -- :Make async
+    use 'tpope/vim-dispatch'
+    -- Additional compilers such as python
+    --use 'Konfekt/vim-compilers'
     use {
-        -- magit
-        'TimUntersberger/neogit',
-        cmd = 'Neogit',  -- without this neovim will crash on open
-        requires = {'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim'},
-        config = function()
-            require("neogit").setup{
-                disable_commit_confirmation = true,
-                integrations={diffview=true}
-            } end
-        }
-        -- Git
-        --use 'tpope/vim-fugitive'
-        -- :Make async
-        use 'tpope/vim-dispatch'
-        -- Additional compilers such as python
-        --use 'Konfekt/vim-compilers'
-        use {
-            'akinsho/bufferline.nvim',
-            requires = {'kyazdani42/nvim-web-devicons'},
-            config=function() require("bufferline").setup() end
-        }
-        use {
-            'nvim-lualine/lualine.nvim',
-            requires = {'kyazdani42/nvim-web-devicons'},
-            config=function() require("evil_lualine") end
-        }
-        -- Buffer line and status line
-        --use 'vim-airline/vim-airline'
-        --use 'vim-airline/vim-airline-themes'
-        -- Auto switch input method
-        use 'rlue/vim-barbaric'
-        use {
-            -- Suggest key binding
-            'folke/which-key.nvim',
-            config=function() require("which-key").setup() end
-        }
-        use {
-            'iamcco/markdown-preview.nvim',
-            run=':call mkdp#util#install()',
-            config=function() vim.g["mkdp_preview_options"]={content_editable=true} end
-        }
-        use {
-            'kyazdani42/nvim-tree.lua',
-            requires = 'kyazdani42/nvim-web-devicons',
-            config = function() require'nvim-tree'.setup {} end
-        }
-        use 'sychen52/gF-python-traceback'
-        use {
-            'sychen52/smart-term-esc.nvim',
-            config=function() require("smart-term-esc").setup() end
-        }
-        -- Automatically set up your configuration after cloning packer.nvim
-        -- Put this at the end after all plugins
-        if packer_bootstrap then
-            require('packer').sync()
+        'akinsho/bufferline.nvim',
+        requires = {'kyazdani42/nvim-web-devicons'},
+        config=function() require("bufferline").setup() end
+    }
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = {'kyazdani42/nvim-web-devicons'},
+        config=function() require("evil_lualine") end
+    }
+    -- Buffer line and status line
+    --use 'vim-airline/vim-airline'
+    --use 'vim-airline/vim-airline-themes'
+    -- Auto switch input method
+    use 'rlue/vim-barbaric'
+    use {
+        -- Suggest key binding
+        'folke/which-key.nvim',
+        config=function() require("which-key").setup() end
+    }
+    use {
+        'iamcco/markdown-preview.nvim',
+        run=':call mkdp#util#install()',
+        config=function()
+            vim.g["mkdp_preview_options"]={content_editable=true}  -- this will enable Grammarly in the browser
         end
-    end)
+    }
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = 'kyazdani42/nvim-web-devicons',
+        config = function() require'nvim-tree'.setup {} end
+    }
+    use 'sychen52/gF-python-traceback'
+    use {
+        'sychen52/smart-term-esc.nvim',
+        config=function() require("smart-term-esc").setup() end
+    }
+    -- Automatically set up your configuration after cloning packer.nvim
+    -- Put this at the end after all plugins
+    if packer_bootstrap then
+        require('packer').sync()
+    end
+end)
