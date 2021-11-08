@@ -1,6 +1,6 @@
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = {"bash", "c", "cmake", "cpp", "cuda", "html", "javascript", "json", "julia", "lua", "python", "regex", "vim"}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  ignore_install = {}, -- List of parsers to ignore installing
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages: {"bash", "c", "cmake", "cpp", "cuda", "html", "javascript", "json", "julia", "lua", "python", "regex", "vim"}
+  ignore_install = {"php", "tlaplus"}, -- List of parsers to ignore installing: these will cause error on Ubuntu 16.04
   highlight = {
     enable = true,              -- false will disable the whole extension
     disable = {},  -- list of language that will be disabled
