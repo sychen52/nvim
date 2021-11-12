@@ -79,6 +79,11 @@ return require('packer').startup(function(use)
         config=function() require("which-key").setup() end
     }
     use {
+        -- markdown highlight and conceal
+        'ixru/nvim-markdown',
+        config=function() vim.g["vim_markdown_math"]=1 end
+    }
+    use {
         'iamcco/markdown-preview.nvim',
         run=':call mkdp#util#install()',
         config=function()
