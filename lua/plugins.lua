@@ -20,7 +20,7 @@ return require('packer').startup(function(use)
     -- Install LSPs
     use {
         'williamboman/nvim-lsp-installer',
-        config=function() require("pylsp-mypy") end
+        config=function() require("lsp-servers") end
     }
     -- 5 plugins for auto complete
     use 'hrsh7th/nvim-cmp'
@@ -98,6 +98,7 @@ return require('packer').startup(function(use)
         requires = 'kyazdani42/nvim-web-devicons',
         config = function() require'nvim-tree'.setup {} end
     }
+    use 'JuliaEditorSupport/julia-vim'
     use 'sychen52/gF-python-traceback'
     use {
         'sychen52/smart-term-esc.nvim',
