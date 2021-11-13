@@ -21,7 +21,7 @@ local root_dir = server.get_server_root_path(server_name)
 local my_server = server.Server:new {
     name = server_name,
     root_dir = root_dir,
-    installer = pip3.packages { "pylsp-mypy", "python-lsp-server[all]" },
+    installer = pip3.packages { "pylsp-mypy", "python-lsp-server" },
     default_options = {
         cmd = { pip3.executable(root_dir, "pylsp") },
     },
