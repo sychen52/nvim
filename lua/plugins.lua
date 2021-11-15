@@ -20,7 +20,10 @@ return require('packer').startup(function(use)
     -- Install LSPs
     use {
         'williamboman/nvim-lsp-installer',
-        config=function() require("lsp-servers") end
+        config=function()
+            require("julials")
+            require("pylsp-mypy")
+        end
     }
     -- 5 plugins for auto complete
     use 'hrsh7th/nvim-cmp'
