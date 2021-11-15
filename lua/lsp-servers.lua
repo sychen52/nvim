@@ -20,18 +20,18 @@ local my_server = server.Server:new {
     },
 }
 
+server_name = "julials"
+root_dir = server.get_server_root_path(server_name)
 -- 1. (optional, only if lspconfig doesn't already support the server)
 --    Create server entry in lspconfig
 configs[server_name] = {
     default_config = {
         filetypes = { "julia" },
-        root_dir = lspconfig.util.root_pattern ".git",
+        root_dir = lspconfig.util.root_pattern(".git", "project.toml"),
     },
 }
 
-server_name = "julials"
-root_dir = server.get_server_root_path(server_name)
-local my_server = server.Server:new {
+my_server = server.Server:new {
     name = server_name,
     root_dir = root_dir,
     languages = { "julia" },
