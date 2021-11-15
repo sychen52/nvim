@@ -5,6 +5,7 @@ local server = require "nvim-lsp-installer.server"
 local pip3 = require "nvim-lsp-installer.installers.pip3"
 local shell = require "nvim-lsp-installer.installers.shell"
 
+
 local server_name = "pylsp-mypy"
 
 local root_dir = server.get_server_root_path(server_name)
@@ -19,6 +20,7 @@ local my_server = server.Server:new {
         cmd = { pip3.executable(root_dir, "pylsp") },
     },
 }
+servers.register(my_server)
 
 server_name = "julials"
 root_dir = server.get_server_root_path(server_name)
