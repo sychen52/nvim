@@ -14,7 +14,7 @@ vim.g["mapleader"] = " "
 vim.opt.background = "dark"
 vim.opt.mouse = "a"                                         -- Enable mouse in all mode
 vim.opt.path:append("**")
-vim.opt.clipboard:append("unnamedplus")                         -- unnamed is mouse mid button; unnamedplus is ctrl-c. You need xclip for this to work
+vim.opt.clipboard:append("unnamedplus")                     -- unnamed is mouse mid button; unnamedplus is ctrl-c. You need xclip for this to work
 vim.opt.complete:append("kspell")                           -- complete based on spell is ":set spell"
 vim.opt.inccommand = 'split'                                -- live view of replace. 'split' has a locallist; 'nosplit' does not.
 vim.opt.foldmethod = 'indent'
@@ -42,14 +42,5 @@ vim.opt.wildmode = {'longest:full', 'full'}                 -- Command-line comp
 
 vim.api.nvim_set_keymap('n', '<Tab>',  ':bn<CR>', {noremap=true})           --Buffer nav
 vim.api.nvim_set_keymap('n', '<S-Tab>', ':bp<CR>', {noremap=true})          --Buffer nav
-_G.show_position = function()
-    local ret = require("nvim-treesitter").statusline({
-        indicator_size = 200,
-        type_patterns = {'file', 'class', 'function', 'method'},
-        transform_fn = function(line) return line:gsub('%(.*%)', '') end,
-    })
-    print(ret)
-end
-vim.api.nvim_set_keymap('n', '<leader>p',  '<cmd>lua show_position()<CR>', {noremap=true})
 
 require('plugins')

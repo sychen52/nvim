@@ -4,6 +4,14 @@ if fn.empty(fn.glob(install_path)) > 0 then
     packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
+-- Automatically run :PackerSync or :PackerCompile whenever plugins.lua is updated
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
+]])
+
 return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
@@ -11,7 +19,18 @@ return require('packer').startup(function(use)
         -- Better syntax highlighting
         'nvim-treesitter/nvim-treesitter',
         run=':TSUpdate',
-        config=function() require("treesitter") end
+        config=function()
+            require("treesitter")
+            _G.show_position = function()
+                local ret = require("nvim-treesitter").statusline({
+                    indicator_size = 200,
+                    type_patterns = {'file', 'class', 'function', 'method'},
+                    transform_fn = function(line) return line:gsub('%(.*%)', '') end,
+                })
+                print(ret)
+            end
+            vim.api.nvim_set_keymap('n', '<leader>p',  '<cmd>lua show_position()<CR>', {noremap=true})
+        end
     }
     use {
         'neovim/nvim-lspconfig',
